@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="StarSign - Dünyadan ve Türkiye'den 100 ünlünün burçları, kariyerleri, servetleri ve hayatları.">
+<meta property="og:title" content="StarSign — Ünlüler ve Burçları">
+<meta property="og:description" content="Dünyadan ve Türkiye'den 100 ünlünün burçları, kariyerleri ve hayatları">
+<meta property="og:type" content="website">
+<title>StarSign — Ünlüler ve Burçları</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+:root{
+--p:#7C3AED;--pl:#A78BFA;--pd:#4C1D95;--s:#F59E0B;--a:#EC4899;
+--bg:#0B0618;--card:#13102A;--cardh:#1C1640;--tp:#F1F5F9;--ts:#C4B5FD;--tm:#8B9DC3;
+--br:rgba(124,58,237,.18);
+--g1:linear-gradient(135deg,#7C3AED,#EC4899);--g2:linear-gradient(135deg,#F59E0B,#EC4899);--g3:linear-gradient(135deg,#06B6D4,#7C3AED);
+--sh:0 8px 32px rgba(124,58,237,.18);--r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden;line-height:1.5}
+body::before{content:'';position:fixed;inset:0;background:
+radial-gradient(ellipse at 15% 50%,rgba(124,58,237,.1),transparent 55%),
+radial-gradient(ellipse at 85% 15%,rgba(236,72,153,.07),transparent 50%),
+radial-gradient(ellipse at 50% 85%,rgba(6,182,212,.05),transparent 50%);
+pointer-events:none;z-index:0}
+
+/* LAYOUT */
+.wrap{max-width:1440px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* HEADER */
+header{padding:32px 0 16px;text-align:center}
+.logo{font-size:2.8rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;letter-spacing:-.5px}
+.sub{color:var(--tm);font-size:.92rem;font-weight:300;margin-top:6px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:12px;margin:22px 0;flex-wrap:wrap}
+.st{text-align:center;padding:12px 22px;background:var(--card);border-radius:var(--r);border:1px solid var(--br);transition:.3s}
+.st:hover{border-color:var(--pl);transform:translateY(-2px)}
+.sn{font-size:1.5rem;font-weight:800;background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sl{font-size:.68rem;color:var(--tm);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* CONTROLS */
+.ctrl{margin:24px 0 16px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.sbox{position:relative;width:100%;max-width:520px}
+.sbox input{width:100%;padding:14px 20px 14px 48px;border-radius:var(--r);border:2px solid var(--br);background:var(--card);color:var(--tp);font-family:inherit;font-size:.92rem;outline:none;transition:.3s}
+.sbox input:focus{border-color:var(--pl);box-shadow:0 0 0 4px rgba(124,58,237,.15)}
+.sbox input::placeholder{color:rgba(139,157,195,.5)}
+.sbox .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.1rem;opacity:.5}
+
+/* FILTER ROWS */
+.fr{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.fb{padding:7px 15px;border-radius:22px;border:1px solid var(--br);background:var(--card);color:var(--tm);font-family:inherit;font-size:.78rem;cursor:pointer;transition:.25s;white-space:nowrap;font-weight:500}
+.fb:hover{border-color:var(--pl);color:var(--tp);background:var(--cardh)}
+.fb.on{background:var(--g1);border-color:transparent;color:#fff;font-weight:600;box-shadow:0 2px 12px rgba(124,58,237,.3)}
+
+/* ZODIAC FILTER */
+.zf{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin:6px 0}
+.zb{width:46px;height:50px;border-radius:12px;border:1px solid var(--br);background:var(--card);color:var(--tm);font-size:1.2rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px}
+.zb span{font-size:.5rem;font-weight:600;letter-spacing:.3px}
+.zb:hover{transform:scale(1.08);border-color:var(--pl);background:var(--cardh)}
+.zb.on{background:var(--g1);border-color:transparent;color:#fff;transform:scale(1.08);box-shadow:var(--sh)}
+
+/* RESULT BAR */
+.rbar{display:flex;justify-content:space-between;align-items:center;margin:12px 0;flex-wrap:wrap;gap:8px}
+.rc{color:var(--tm);font-size:.84rem}.rc b{color:var(--s);font-weight:700}
+.sort-sel{padding:8px 14px;border-radius:10px;border:1px solid var(--br);background:var(--card);color:var(--tp);font-family:inherit;font-size:.8rem;cursor:pointer;outline:none}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-bottom:24px}
+
+/* CARD */
+.card{background:var(--card);border-radius:var(--r);border:1px solid var(--br);padding:22px;transition:.35s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g1);transform:scaleX(0);transition:.35s;transform-origin:left}
+.card:hover{transform:translateY(-4px);border-color:var(--pl);box-shadow:var(--sh);background:var(--cardh)}
+.card:hover::after{transform:scaleX(1)}
+.ch{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.av{width:56px;height:56px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 16px rgba(124,58,237,.25);position:relative}
+.av .flag{position:absolute;bottom:-2px;right:-2px;font-size:.8rem;background:var(--card);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
+.cn{font-size:1.06rem;font-weight:700;line-height:1.25}
+.ct{font-size:.72rem;color:var(--tm);margin-top:2px}
+.czb{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:16px;background:rgba(124,58,237,.15);font-size:.7rem;color:var(--ts);margin-top:4px;font-weight:500}
+.cb{margin-top:6px}
+.ci{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(124,58,237,.08);font-size:.8rem}
+.ci:last-of-type{border:none}
+.il{color:var(--tm);font-weight:400}.iv{color:var(--tp);font-weight:600;text-align:right}
+.cbio{margin-top:10px;font-size:.78rem;color:var(--tm);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.tag{padding:3px 10px;border-radius:10px;font-size:.65rem;font-weight:600;background:rgba(245,158,11,.12);color:var(--s);letter-spacing:.3px}
+
+/* PAGINATION */
+.pager{display:flex;justify-content:center;align-items:center;gap:8px;margin:24px 0 40px;flex-wrap:wrap}
+.pg-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--br);background:var(--card);color:var(--tm);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover{border-color:var(--pl);color:var(--tp)}
+.pg-btn.on{background:var(--g1);border-color:transparent;color:#fff;box-shadow:0 2px 12px rgba(124,58,237,.3)}
+.pg-btn:disabled{opacity:.3;cursor:default}
+.pg-info{color:var(--tm);font-size:.8rem;margin:0 8px}
+
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(5,3,15,.88);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.mo.on{display:flex}
+.md{background:linear-gradient(180deg,#1A1440,#110D28);border-radius:20px;border:1px solid var(--br);max-width:600px;width:100%;max-height:92vh;overflow-y:auto;padding:32px;position:relative;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.mc{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--br);background:rgba(11,6,24,.8);color:var(--tp);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;z-index:2}
+.mc:hover{background:var(--p);border-color:var(--p)}
+.mav{width:88px;height:88px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin:0 auto 16px;box-shadow:0 8px 32px rgba(124,58,237,.35)}
+.md h2{text-align:center;font-size:1.4rem;font-weight:800;margin-bottom:4px}
+.mst{text-align:center;color:var(--tm);font-size:.85rem;margin-bottom:18px}
+.mz{text-align:center;padding:18px;background:rgba(124,58,237,.08);border-radius:var(--r);margin-bottom:20px;border:1px solid rgba(124,58,237,.12)}
+.mzi{font-size:2rem}.mzn{font-size:1.05rem;font-weight:700;color:var(--ts);margin:4px 0}
+.mzd{font-size:.73rem;color:var(--tm)}.mzc{font-size:.82rem;color:var(--tm);margin-top:10px;line-height:1.6;font-style:italic}
+.mdt{margin-top:18px}
+.mdr{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(124,58,237,.08);font-size:.86rem}
+.mdr:last-child{border:none}
+.mbio{margin-top:16px;font-size:.85rem;color:var(--tm);line-height:1.7;padding:14px;background:rgba(124,58,237,.05);border-radius:12px;border:1px solid rgba(124,58,237,.08)}
+
+/* SCROLL TOP */
+.stt{position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;background:var(--g1);border:none;color:#fff;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:100;box-shadow:var(--sh);transition:.3s}
+.stt:hover{transform:scale(1.1)}.stt.show{display:flex}
+
+/* FOOTER */
+footer{text-align:center;padding:28px 0;border-top:1px solid var(--br);color:var(--tm);font-size:.75rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.logo{font-size:2rem}.grid{grid-template-columns:1fr}.stats{gap:8px}.st{padding:8px 14px}
+.zb{width:40px;height:44px;font-size:1rem}.md{padding:22px;margin:8px}
+}
+@media(max-width:480px){
+.logo{font-size:1.6rem}.fb{font-size:.7rem;padding:5px 11px}.zb{width:36px;height:40px;font-size:.9rem}
+.grid{grid-template-columns:1fr;gap:12px}.card{padding:18px}
+}
+
+/* ANIMATION */
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:cardIn .4s ease both}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--p);border-radius:4px}
+.md::-webkit-scrollbar{width:5px}.md::-webkit-scrollbar-thumb{background:rgba(124,58,237,.4);border-radius:3px}
+
+/* LOADING */
+.loading{text-align:center;padding:60px;color:var(--tm)}
+.loading .spinner{width:40px;height:40px;border:3px solid var(--br);border-top-color:var(--p);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo">⭐ StarSign</div>
+<p class="sub">Dünyadan ve Türkiye'den Ünlüler — Burçları, Kariyerleri, Servetleri ve Hayatları</p>
+</header>
+<div class="stats" id="statsBar"></div>
+<div class="ctrl">
+<div class="sbox"><span class="si">🔍</span><input type="text" id="searchInput" placeholder="Ünlü ara... (isim, meslek, burç veya kategori)"></div>
+<div class="fr" id="catFilter"></div>
+<div class="zf" id="zodFilter"></div>
+<div class="fr" id="origFilter"></div>
+</div>
+<div class="rbar"><div class="rc" id="resCount"></div>
+<select class="sort-sel" id="sortSel"><option value="name-az">İsim (A-Z)</option><option value="name-za">İsim (Z-A)</option><option value="birth-new">En Genç</option><option value="birth-old">En Yaşlı</option><option value="zodiac">Burca Göre</option><option value="wealth-high">Servet (En Zengin)</option><option value="wealth-low">Servet (En Az)</option></select>
+</div>
+<div class="grid" id="grid"><div class="loading"><div class="spinner"></div>Yükleniyor...</div></div>
+<div class="pager" id="pager"></div>
+</div>
+<div class="mo" id="modal"><div class="md" id="modalContent"></div></div>
+<button class="stt" id="scrollTopBtn">↑</button>
+<footer><div class="wrap">⭐ StarSign — Ünlüler ve Burçları © 2026 | Tüm bilgiler genel kültür amaçlıdır 💜</div></footer>
+
+<script>
+// ===== STARSIGN ENGINE =====
+const SS={config:{perPage:24,currentPage:1,animDelay:0.03},state:{category:'all',zodiac:'all',origin:'all',search:'',sort:'name-az',filtered:[]},
+zodiac:{"Koç":{"i":"♈","e":"🐏","d":"21 Mar - 19 Nis","el":"Ateş","pl":"Mars","y":"Cesur, enerjik ve rekabetçi. Liderlik etmeyi sever, risk almaktan kaçınmaz. Tutkulu ve kararlıdır."},"Boğa":{"i":"♉","e":"🐂","d":"20 Nis - 20 May","el":"Toprak","pl":"Venüs","y":"Kararlı, sabırlı ve güvenilir. Konfor ve lüksü sever, maddi güvenliğe önem verir. Sadık ve azimlidir."},"İkizler":{"i":"♊","e":"👯","d":"21 May - 20 Haz","el":"Hava","pl":"Merkür","y":"Meraklı, uyumlu ve çok yönlü. İletişim konusunda yetenekli, sosyal ve eğlenceli. Çabuk öğrenir."},"Yengeç":{"i":"♋","e":"🦀","d":"21 Haz - 22 Tem","el":"Su","pl":"Ay","y":"Duygusal, koruyucu ve sezgisel. Aileye çok bağlı, şefkatli ve empatik. İç dünyası zengindir."},"Aslan":{"i":"♌","e":"🦁","d":"23 Tem - 22 Ağu","el":"Ateş","pl":"Güneş","y":"Karizmatik, yaratıcı ve cömert. Sahne ışıklarını sever, doğal lider. Sadık ve sıcakkanlıdır."},"Başak":{"i":"♍","e":"🌾","d":"23 Ağu - 22 Eyl","el":"Toprak","pl":"Merkür","y":"Analitik, çalışkan ve detaycı. Mükemmeliyetçi, düzenli ve pratik. Yardımsever ve alçakgönüllüdür."},"Terazi":{"i":"♎","e":"⚖️","d":"23 Eyl - 22 Eki","el":"Hava","pl":"Venüs","y":"Diplomatik, zarif ve adil. Uyumu sever, estetik duygusu güçlü. Romantik ve sosyal bir yapıdadır."},"Akrep":{"i":"♏","e":"🦂","d":"23 Eki - 21 Kas","el":"Su","pl":"Plüton","y":"Tutkulu, gizemli ve kararlı. Sezgileri güçlü, sadık ve derin. Dönüşüm ve güç sembolüdür."},"Yay":{"i":"♐","e":"🏹","d":"22 Kas - 21 Ara","el":"Ateş","pl":"Jüpiter","y":"Özgür ruhlu, iyimser ve maceracı. Felsefi düşünür, dürüst ve eğlenceli. Seyahati çok sever."},"Oğlak":{"i":"♑","e":"🐐","d":"22 Ara - 19 Oca","el":"Toprak","pl":"Satürn","y":"Disiplinli, hırslı ve sorumluluk sahibi. Hedeflerine azimle yürür, geleneksel ve güvenilirdir."},"Kova":{"i":"♒","e":"🏺","d":"20 Oca - 18 Şub","el":"Hava","pl":"Uranüs","y":"Yenilikçi, bağımsız ve insancıl. Farklı düşünür, vizyon sahibi. Özgürlüğüne düşkündür."},"Balık":{"i":"♓","e":"🐟","d":"19 Şub - 20 Mar","el":"Su","pl":"Neptün","y":"Hayalperest, empatik ve sanatsal. Sezgileri güçlü, romantik ve fedakar. Manevi dünyası derindir."}},
+catIcons:{"Müzik":"🎵","Sinema":"🎬","Spor":"⚽","İş Dünyası":"💼","Bilim":"🔬","Moda":"👗","Edebiyat":"📚","Dizi":"📺","Sanat":"🎨"},
+celebs:[{"n":"Tarkan","b":"17 Ekim 1972","z":"Terazi","c":"Şarkıcı, Megastar","cat":"Müzik","o":"TR","w":"$30M","bio":"Türk pop müziğinin megastarı. Dünya çapında ün kazandı. Avrupa listelerinde zirveye çıkan ilk Türk sanatçı.","t":["Pop","Megastar"]},{"n":"Barış Manço","b":"2 Ocak 1943","z":"Oğlak","c":"Müzisyen, Sunucu","cat":"Müzik","o":"TR","w":"—","bio":"Türk rock müziğinin efsanesi. '7'den 77'ye' programıyla nesilleri birleştirdi. Anadolu rock öncüsü.","t":["Rock","Efsane"]},{"n":"Kıvanç Tatlıtuğ","b":"27 Ekim 1983","z":"Akrep","c":"Oyuncu, Model","cat":"Dizi","o":"TR","w":"$12M","bio":"Türk dizilerinin uluslararası yüzü. Orta Doğu ve Balkanlar'da büyük hayran kitlesine sahip.","t":["Dizi","Model"]},{"n":"Fazıl Say","b":"14 Ocak 1970","z":"Oğlak","c":"Piyanist, Besteci","cat":"Sanat","o":"TR","w":"$5M","bio":"Dünya çapında tanınan Türk piyanist ve besteci. İstanbul Senfonisi ile ünlü.","t":["Klasik Müzik","Besteci"]},{"n":"Hande Erçel","b":"24 Kasım 1993","z":"Yay","c":"Oyuncu, Model","cat":"Dizi","o":"TR","w":"$6M","bio":"'Sen Çal Kapımı' dizisiyle uluslararası üne kavuştu. Sosyal medyada en çok takip edilen Türk kadın.","t":["Dizi","Sosyal Medya"]},{"n":"Arda Güler","b":"25 Şubat 2005","z":"Balık","c":"Futbolcu","cat":"Spor","o":"TR","w":"$10M","bio":"Real Madrid forması giyen genç Türk yetenek. Türk futbolunun yeni yıldızı.","t":["Futbol","Real Madrid"]},{"n":"Sezen Aksu","b":"13 Temmuz 1954","z":"Yengeç","c":"Şarkıcı, Söz Yazarı","cat":"Müzik","o":"TR","w":"$20M","bio":"Türk müziğinin 'Minik Serçe'si. Yüzlerce şarkıya imza atmış efsanevi söz yazarı ve yorumcu.","t":["Pop","Söz Yazarı"]},{"n":"Nuri Bilge Ceylan","b":"26 Ocak 1959","z":"Kova","c":"Yönetmen, Fotoğrafçı","cat":"Sinema","o":"TR","w":"$8M","bio":"Cannes'da Altın Palmiye kazanan Türk yönetmen. 'Kış Uykusu' ile sinema tarihine adını yazdırdı.","t":["Cannes","Yönetmen"]},{"n":"Burak Özçivit","b":"24 Aralık 1984","z":"Oğlak","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$8M","bio":"'Kuruluş Osman' dizisinin başrol oyuncusu. Ortadoğu'da büyük hayran kitlesine sahip.","t":["Dizi","Tarih"]},{"n":"Ebru Gündeş","b":"12 Ekim 1974","z":"Terazi","c":"Şarkıcı","cat":"Müzik","o":"TR","w":"$15M","bio":"Türk pop müziğinin güçlü seslerinden. Onlarca hit şarkısı ve platin albümü bulunan sanatçı.","t":["Pop","Diva"]},{"n":"Aziz Sancar","b":"8 Eylül 1946","z":"Başak","c":"Bilim İnsanı","cat":"Bilim","o":"TR","w":"$5M","bio":"2015 Nobel Kimya Ödülü sahibi Türk bilim insanı. DNA onarım mekanizmaları uzmanı.","t":["Nobel","Bilim"]},{"n":"Bergüzar Korel","b":"27 Ağustos 1982","z":"Başak","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$7M","bio":"'Binbir Gece' ve 'Karadayı' dizileriyle tanınan başarılı oyuncu.","t":["Dizi","Drama"]},{"n":"Cem Yılmaz","b":"23 Nisan 1973","z":"Boğa","c":"Komedyen, Oyuncu","cat":"Sinema","o":"TR","w":"$25M","bio":"Türkiye'nin en sevilen komedyeni. 'G.O.R.A.' ve 'A.R.O.G.' ile gişe rekorları kırdı.","t":["Komedi","Stand-up"]},{"n":"Demet Özdemir","b":"26 Şubat 1992","z":"Balık","c":"Oyuncu, Dansçı","cat":"Dizi","o":"TR","w":"$5M","bio":"'Erkenci Kuş' dizisiyle dünya çapında tanınan oyuncu. Çok yönlü sanatçı.","t":["Dizi","Uluslararası"]},{"n":"İlhan İrem","b":"21 Ocak 1955","z":"Kova","c":"Müzisyen, Besteci","cat":"Müzik","o":"TR","w":"$3M","bio":"Türk müziğinin dahi bestecisi. Kendine özgü tarzıyla kült bir figür.","t":["Rock","Kült"]},{"n":"Acun Ilıcalı","b":"29 Mayıs 1969","z":"İkizler","c":"Medya Patronu, Sunucu","cat":"İş Dünyası","o":"TR","w":"$700M","bio":"TV8 ve Exxen'in kurucusu. Survivor'ı Türkiye'ye getiren medya devi. Hull City FC sahibi.","t":["Medya","İş"]},{"n":"Tuba Büyüküstün","b":"5 Temmuz 1982","z":"Yengeç","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$6M","bio":"Uluslararası Emmy ödüllü Türk oyuncu. '20 Dakika' ve 'Kara Para Aşk' ile tanınır.","t":["Emmy","Uluslararası"]},{"n":"Murat Boz","b":"7 Mart 1980","z":"Balık","c":"Şarkıcı","cat":"Müzik","o":"TR","w":"$10M","bio":"YouTube'da milyarlarca izlenmeye ulaşan Türk pop yıldızı.","t":["Pop","YouTube"]},{"n":"Orhan Pamuk","b":"7 Haziran 1952","z":"İkizler","c":"Yazar","cat":"Edebiyat","o":"TR","w":"$12M","bio":"2006 Nobel Edebiyat Ödülü sahibi. Dünya edebiyatının önemli isimlerinden.","t":["Nobel","Roman"]},{"n":"Beren Saat","b":"26 Şubat 1984","z":"Balık","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$10M","bio":"'Fatmagül' dizisiyle uluslararası üne kavuştu. Netflix yapımlarında da rol aldı.","t":["Netflix","Drama"]},{"n":"Cüneyt Arkın","b":"8 Eylül 1937","z":"Başak","c":"Oyuncu","cat":"Sinema","o":"TR","w":"$4M","bio":"Yeşilçam'ın efsane aktörü. 300'den fazla filmde rol aldı.","t":["Yeşilçam","Aksiyon"]},{"n":"Hadise","b":"22 Ekim 1985","z":"Terazi","c":"Şarkıcı","cat":"Müzik","o":"TR","w":"$15M","bio":"Eurovision'da Türkiye'yi temsil eden pop yıldızı. O Ses Türkiye jürisi.","t":["Pop","Eurovision"]},{"n":"Şener Şen","b":"26 Aralık 1941","z":"Oğlak","c":"Oyuncu","cat":"Sinema","o":"TR","w":"$8M","bio":"Türk sinemasının yaşayan efsanesi. Komedi ve drama türlerinin ustası.","t":["Sinema","Efsane"]},{"n":"Ajda Pekkan","b":"12 Şubat 1946","z":"Kova","c":"Şarkıcı","cat":"Müzik","o":"TR","w":"$18M","bio":"Türk pop müziğinin 'Süperstar'ı. 60 yılı aşkın efsanevi kariyer.","t":["Pop","Süperstar"]},{"n":"Haluk Bilginer","b":"5 Haziran 1954","z":"İkizler","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$6M","bio":"Uluslararası Emmy En İyi Erkek Oyuncu ödüllü tiyatro ve sinema ustası.","t":["Emmy","Tiyatro"]},{"n":"Beyoncé","b":"4 Eylül 1981","z":"Başak","c":"Şarkıcı, İş Kadını","cat":"Müzik","o":"INT","w":"$540M","bio":"32 Grammy ödüllü pop ikonu. Müzik tarihinin en başarılı kadın sanatçısı.","t":["Pop","Grammy"]},{"n":"Elon Musk","b":"28 Haziran 1971","z":"Yengeç","c":"Girişimci, CEO","cat":"İş Dünyası","o":"INT","w":"$230B+","bio":"Tesla, SpaceX ve X sahibi. Dünyanın en zengin insanlarından biri.","t":["Teknoloji","Uzay"]},{"n":"Taylor Swift","b":"13 Aralık 1989","z":"Yay","c":"Şarkıcı, Söz Yazarı","cat":"Müzik","o":"INT","w":"$1.1B","bio":"Tarihin en çok satan müzik sanatçılarından. Eras Tour dünya rekorları kırdı.","t":["Pop","Milyarder"]},{"n":"Leonardo DiCaprio","b":"11 Kasım 1974","z":"Akrep","c":"Oyuncu, Yapımcı","cat":"Sinema","o":"INT","w":"$300M","bio":"Oscar ödüllü Hollywood yıldızı. Titanic'ten Revenant'a efsanevi kariyer.","t":["Oscar","Hollywood"]},{"n":"Cristiano Ronaldo","b":"5 Şubat 1985","z":"Kova","c":"Futbolcu","cat":"Spor","o":"INT","w":"$600M","bio":"5 Ballon d'Or, 5 Şampiyonlar Ligi. Instagram'ın en çok takip edilen kişisi.","t":["Futbol","Rekor"]},{"n":"Rihanna","b":"20 Şubat 1988","z":"Balık","c":"Şarkıcı, İş Kadını","cat":"Müzik","o":"INT","w":"$1.4B","bio":"Fenty Beauty ile milyarder olan Barbados'lu pop ikonu ve girişimci.","t":["Pop","Milyarder"]},{"n":"Lionel Messi","b":"24 Haziran 1987","z":"Yengeç","c":"Futbolcu","cat":"Spor","o":"INT","w":"$650M","bio":"8 Ballon d'Or. 2022 Dünya Kupası şampiyonu. Futbol tarihinin en iyilerinden.","t":["Futbol","GOAT"]},{"n":"Oprah Winfrey","b":"29 Ocak 1954","z":"Kova","c":"Sunucu, Medya Patronu","cat":"İş Dünyası","o":"INT","w":"$2.5B","bio":"Amerikan medyasının kraliçesi. Medya imparatorluğu kuran iş kadını.","t":["Medya","İlham"]},{"n":"Drake","b":"24 Ekim 1986","z":"Akrep","c":"Rapçi, Yapımcı","cat":"Müzik","o":"INT","w":"$260M","bio":"Spotify'da en çok dinlenen sanatçılardan biri. Kanadalı rap yıldızı.","t":["Rap","Spotify"]},{"n":"Meryl Streep","b":"22 Haziran 1949","z":"Yengeç","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$160M","bio":"Sinema tarihinin en çok Oscar adaylığı alan oyuncusu. 3 Oscar ödülü.","t":["Oscar","Efsane"]},{"n":"Jeff Bezos","b":"12 Ocak 1964","z":"Oğlak","c":"Girişimci","cat":"İş Dünyası","o":"INT","w":"$200B+","bio":"Amazon'un kurucusu. E-ticareti dönüştüren iş insanı. Blue Origin ile uzay.","t":["Amazon","E-ticaret"]},{"n":"Adele","b":"5 Mayıs 1988","z":"Boğa","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$220M","bio":"İngiliz soul ve pop yıldızı. 120 milyon albüm sattı. 16 Grammy ödüllü.","t":["Soul","Grammy"]},{"n":"LeBron James","b":"30 Aralık 1984","z":"Oğlak","c":"Basketbolcu","cat":"Spor","o":"INT","w":"$500M","bio":"NBA tarihinin en çok sayı atan oyuncusu. 4 NBA şampiyonluğu.","t":["NBA","GOAT"]},{"n":"Zendaya","b":"1 Eylül 1996","z":"Başak","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$20M","bio":"Euphoria ve Spider-Man serisiyle tanınan Emmy ödüllü genç yetenek.","t":["Euphoria","Emmy"]},{"n":"Bill Gates","b":"28 Ekim 1955","z":"Akrep","c":"Girişimci, Hayırsever","cat":"İş Dünyası","o":"INT","w":"$130B","bio":"Microsoft'un kurucu ortağı. Dünyanın en büyük hayırseverlerinden biri.","t":["Microsoft","Hayırsever"]},{"n":"Shakira","b":"2 Şubat 1977","z":"Kova","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$300M","bio":"Latin müziğini dünyaya taşıyan Kolombiyalı pop yıldızı.","t":["Latin","Pop"]},{"n":"Tom Hanks","b":"9 Temmuz 1956","z":"Yengeç","c":"Oyuncu, Yapımcı","cat":"Sinema","o":"INT","w":"$400M","bio":"Hollywood'un en sevilen aktörü. Art arda 2 Oscar kazandı.","t":["Oscar","Sevilen"]},{"n":"Serena Williams","b":"26 Eylül 1981","z":"Terazi","c":"Tenisçi, İş Kadını","cat":"Spor","o":"INT","w":"$260M","bio":"23 Grand Slam şampiyonluğu. Tenis tarihinin en başarılı kadın oyuncusu.","t":["Tenis","Grand Slam"]},{"n":"Angelina Jolie","b":"4 Haziran 1975","z":"İkizler","c":"Oyuncu, Yönetmen","cat":"Sinema","o":"INT","w":"$120M","bio":"Oscar ödüllü oyuncu ve BM İyi Niyet Elçisi. İnsani yardım savunucusu.","t":["Oscar","BM"]},{"n":"Usain Bolt","b":"21 Ağustos 1986","z":"Aslan","c":"Atlet","cat":"Spor","o":"INT","w":"$90M","bio":"Tüm zamanların en hızlı insanı. 100m ve 200m dünya rekortmeni. 8 altın madalya.","t":["Olimpiyat","Rekor"]},{"n":"Lady Gaga","b":"28 Mart 1986","z":"Koç","c":"Şarkıcı, Oyuncu","cat":"Müzik","o":"INT","w":"$320M","bio":"Pop müziğin en yaratıcı isimlerinden. 13 Grammy ödüllü sanatçı.","t":["Pop","Yaratıcı"]},{"n":"Keanu Reeves","b":"2 Eylül 1964","z":"Başak","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$380M","bio":"Matrix ve John Wick serileriyle tanınan, alçakgönüllülüğüyle sevilen yıldız.","t":["Matrix","Sevilen"]},{"n":"Dua Lipa","b":"22 Ağustos 1995","z":"Aslan","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$35M","bio":"Future Nostalgia albümüyle Grammy kazanan İngiliz pop yıldızı.","t":["Pop","Grammy"]},{"n":"Robert Downey Jr.","b":"4 Nisan 1965","z":"Koç","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$300M","bio":"Iron Man/Tony Stark rolüyle ikonikleşen Hollywood aktörü. Marvel efsanesi.","t":["Marvel","Hollywood"]},{"n":"Neymar Jr.","b":"5 Şubat 1992","z":"Kova","c":"Futbolcu","cat":"Spor","o":"INT","w":"$200M","bio":"Brezilyalı futbol yıldızı. Futbolun en pahalı transferlerinden biri.","t":["Futbol","Brezilya"]},{"n":"Emma Watson","b":"15 Nisan 1990","z":"Koç","c":"Oyuncu, Aktivist","cat":"Sinema","o":"INT","w":"$85M","bio":"Harry Potter'ın Hermione'si. BM Kadın Hakları savunucusu.","t":["Harry Potter","Feminist"]},{"n":"Ed Sheeran","b":"17 Şubat 1991","z":"Kova","c":"Şarkıcı, Söz Yazarı","cat":"Müzik","o":"INT","w":"$200M","bio":"'Shape of You' tüm zamanların en çok dinlenen şarkılarından. Stadyum sanatçısı.","t":["Pop","Stadyum"]},{"n":"Gigi Hadid","b":"23 Nisan 1995","z":"Boğa","c":"Model","cat":"Moda","o":"INT","w":"$29M","bio":"Victoria's Secret ve dünya markalarının yüzü olan Amerikalı süpermodel.","t":["Model","Moda"]},{"n":"Kim Kardashian","b":"21 Ekim 1980","z":"Terazi","c":"İş Kadını, Medya Kişiliği","cat":"İş Dünyası","o":"INT","w":"$1.7B","bio":"Realite TV'den milyarder iş kadınına. SKIMS markasının kurucusu.","t":["İş","Moda"]},{"n":"Roger Federer","b":"8 Ağustos 1981","z":"Aslan","c":"Tenisçi","cat":"Spor","o":"INT","w":"$550M","bio":"20 Grand Slam şampiyonluğu ile tenisin efendisi. Zarif oyun tarzının simgesi.","t":["Tenis","Efsane"]},{"n":"Billie Eilish","b":"18 Aralık 2001","z":"Yay","c":"Şarkıcı, Söz Yazarı","cat":"Müzik","o":"INT","w":"$30M","bio":"Z kuşağının müzik fenomeni. 7 Grammy ödüllü. Oscar kazanan en genç sanatçı.","t":["Pop","Z Kuşağı"]},{"n":"Brad Pitt","b":"18 Aralık 1963","z":"Yay","c":"Oyuncu, Yapımcı","cat":"Sinema","o":"INT","w":"$400M","bio":"Oscar ödüllü Hollywood aktörü ve yapımcısı. Fight Club efsanesi.","t":["Oscar","Yapımcı"]},{"n":"The Weeknd","b":"16 Şubat 1990","z":"Kova","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$300M","bio":"'Blinding Lights' tüm zamanların en popüler şarkılarından. Super Bowl ikonu.","t":["R&B","Super Bowl"]},{"n":"Margot Robbie","b":"2 Temmuz 1990","z":"Yengeç","c":"Oyuncu, Yapımcı","cat":"Sinema","o":"INT","w":"$40M","bio":"Barbie filmiyle gişe rekoru kıran Avustralyalı Oscar adayı oyuncu.","t":["Barbie","Hollywood"]},{"n":"Lewis Hamilton","b":"7 Ocak 1985","z":"Oğlak","c":"Formula 1 Pilotu","cat":"Spor","o":"INT","w":"$285M","bio":"7 kez F1 Dünya Şampiyonu. Rekor kıran İngiliz pilot.","t":["F1","Şampiyon"]},{"n":"Ariana Grande","b":"26 Haziran 1993","z":"Yengeç","c":"Şarkıcı, Oyuncu","cat":"Müzik","o":"INT","w":"$240M","bio":"Güçlü vokali ve pop hitleriyle tanınan Amerikalı sanatçı.","t":["Pop","Vokal"]},{"n":"Mark Zuckerberg","b":"14 Mayıs 1984","z":"Boğa","c":"Girişimci, CEO","cat":"İş Dünyası","o":"INT","w":"$170B+","bio":"Facebook/Meta'nın kurucusu. Sosyal medyayı dönüştüren girişimci.","t":["Meta","Teknoloji"]},{"n":"Scarlett Johansson","b":"22 Kasım 1984","z":"Yay","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$165M","bio":"Dünyanın en çok gişe yapan kadın oyuncusu. Marvel'ın Black Widow'u.","t":["Marvel","Hollywood"]},{"n":"Virat Kohli","b":"5 Kasım 1988","z":"Akrep","c":"Kriketçi","cat":"Spor","o":"INT","w":"$127M","bio":"Hint kriketinin süperstarı. 1.4 milyar insanın spor kahramanı.","t":["Kriket","Hindistan"]},{"n":"Selena Gomez","b":"22 Temmuz 1992","z":"Yengeç","c":"Şarkıcı, Oyuncu","cat":"Müzik","o":"INT","w":"$95M","bio":"Rare Beauty kozmetik markası kurucusu. Mental sağlık savunucusu.","t":["Pop","Güzellik"]},{"n":"Dwayne Johnson","b":"2 Mayıs 1972","z":"Boğa","c":"Oyuncu, Eski Güreşçi","cat":"Sinema","o":"INT","w":"$800M","bio":"'The Rock'. WWE'den Hollywood'a geçen süperstar. En çok kazanan aktör.","t":["Aksiyon","WWE"]},{"n":"Naomi Campbell","b":"22 Mayıs 1970","z":"İkizler","c":"Süpermodel","cat":"Moda","o":"INT","w":"$80M","bio":"90'ların efsanevi süpermodeli. Moda dünyasının ikonu.","t":["Süpermodel","İkon"]},{"n":"Stephen Hawking","b":"8 Ocak 1942","z":"Oğlak","c":"Fizikçi","cat":"Bilim","o":"INT","w":"$20M","bio":"Kara delikler ve kozmoloji alanında çığır açan fizikçi. Bilimin süperstarı.","t":["Fizik","Deha"]},{"n":"Rafael Nadal","b":"3 Haziran 1986","z":"İkizler","c":"Tenisçi","cat":"Spor","o":"INT","w":"$220M","bio":"22 Grand Slam. Roland Garros'un tartışmasız efendisi. Toprak kortun kralı.","t":["Tenis","Roland Garros"]},{"n":"Malala Yousafzai","b":"12 Temmuz 1997","z":"Yengeç","c":"Aktivist, Yazar","cat":"Edebiyat","o":"INT","w":"$2M","bio":"Tarihin en genç Nobel Barış Ödülü sahibi. Kız çocuklarının eğitim hakkı savunucusu.","t":["Nobel","Eğitim"]},{"n":"Timothée Chalamet","b":"27 Aralık 1995","z":"Oğlak","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$25M","bio":"Hollywood'un yeni nesil yıldızı. Dune ve Call Me by Your Name ile tanındı.","t":["Dune","Yeni Nesil"]},{"n":"Morgan Freeman","b":"1 Haziran 1937","z":"İkizler","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$250M","bio":"Oscar ödüllü efsanevi aktör. Muhteşem sesiyle tanınır.","t":["Oscar","Efsane"]},{"n":"Penélope Cruz","b":"28 Nisan 1974","z":"Boğa","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$85M","bio":"Oscar ödüllü İspanyol aktris. Almodóvar filmlerinin yıldızı.","t":["Oscar","İspanya"]},{"n":"Stephen Curry","b":"14 Mart 1988","z":"Balık","c":"Basketbolcu","cat":"Spor","o":"INT","w":"$160M","bio":"NBA'in üç sayı kralı. Golden State Warriors efsanesi. 4 NBA şampiyonluğu.","t":["NBA","Warriors"]},{"n":"Will Smith","b":"25 Eylül 1968","z":"Terazi","c":"Oyuncu, Rapçi","cat":"Sinema","o":"INT","w":"$350M","bio":"Fresh Prince'ten Oscar'a uzanan parlak kariyer.","t":["Oscar","Aksiyon"]},{"n":"Emma Stone","b":"6 Kasım 1988","z":"Akrep","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$40M","bio":"2 Oscar ödüllü. La La Land ve Poor Things ile sinema tarihine geçti.","t":["Oscar","Hollywood"]},{"n":"J.K. Rowling","b":"31 Temmuz 1965","z":"Aslan","c":"Yazar","cat":"Edebiyat","o":"INT","w":"$1B","bio":"Harry Potter serisinin yaratıcısı. Sıfırdan milyarder olan ilk yazar.","t":["Harry Potter","Milyarder"]},{"n":"Son Heung-min","b":"8 Temmuz 1992","z":"Yengeç","c":"Futbolcu","cat":"Spor","o":"INT","w":"$45M","bio":"Tottenham kaptanı. Asya futbolunun en büyük yıldızı.","t":["Futbol","Tottenham"]},{"n":"Mohamed Salah","b":"15 Haziran 1992","z":"İkizler","c":"Futbolcu","cat":"Spor","o":"INT","w":"$90M","bio":"Liverpool'un Mısırlı golcüsü. Afrika'nın en büyük futbol yıldızı.","t":["Futbol","Liverpool"]},{"n":"Khaby Lame","b":"9 Mart 2000","z":"Balık","c":"İçerik Üretici","cat":"İş Dünyası","o":"INT","w":"$16M","bio":"TikTok'un en çok takip edilen kişisi. Sessiz komedisiyle dünya çapında viral.","t":["TikTok","Viral"]},{"n":"Hülya Avşar","b":"10 Ekim 1963","z":"Terazi","c":"Oyuncu, Sunucu","cat":"Sinema","o":"TR","w":"$15M","bio":"Türk sinemasının ve TV'nin en tanınan isimlerinden biri.","t":["Sinema","TV"]},{"n":"Müslüm Gürses","b":"6 Mart 1953","z":"Balık","c":"Şarkıcı","cat":"Müzik","o":"TR","w":"—","bio":"Arabesk müziğin efsane sesi. 'Müslüm Baba' olarak anılır.","t":["Arabesk","Efsane"]},{"n":"Mesut Özil","b":"15 Ekim 1988","z":"Terazi","c":"Eski Futbolcu","cat":"Spor","o":"TR","w":"$120M","bio":"Real Madrid ve Arsenal'de forma giyen dünya yıldızı. 2014 Dünya Kupası şampiyonu.","t":["Futbol","Arsenal"]},{"n":"Neslihan Atagül","b":"20 Ağustos 1992","z":"Aslan","c":"Oyuncu","cat":"Dizi","o":"TR","w":"$4M","bio":"'Kara Sevda' dizisiyle uluslararası üne kavuşan genç oyuncu.","t":["Dizi","Drama"]},{"n":"Çağatay Ulusoy","b":"23 Eylül 1990","z":"Terazi","c":"Oyuncu, Model","cat":"Dizi","o":"TR","w":"$5M","bio":"Netflix'in ilk Türk orijinal dizisinin başrol oyuncusu.","t":["Netflix","Model"]},{"n":"Mevlâna (Rumi)","b":"30 Eylül 1207","z":"Terazi","c":"Şair, Düşünür","cat":"Edebiyat","o":"TR","w":"—","bio":"13. yüzyılın en büyük sufi şairi. Eserleri dünya genelinde en çok okunanlar arasında.","t":["Şiir","Evrensel"]},{"n":"Yılmaz Güney","b":"1 Nisan 1937","z":"Koç","c":"Yönetmen, Oyuncu","cat":"Sinema","o":"TR","w":"—","bio":"Cannes'da Altın Palmiye kazanan Türk yönetmen. 'Yol' filmiyle sinema tarihine geçti.","t":["Cannes","Palmiye"]},{"n":"Fatih Terim","b":"4 Eylül 1953","z":"Başak","c":"Futbol Teknik Direktörü","cat":"Spor","o":"TR","w":"$20M","bio":"Galatasaray ile UEFA Kupası kazanan 'İmparator'. Türk futbolunun efsanesi.","t":["Futbol","Galatasaray"]},{"n":"Jennie Kim (BLACKPINK)","b":"16 Ocak 1996","z":"Oğlak","c":"Şarkıcı, Model","cat":"Müzik","o":"INT","w":"$20M","bio":"K-Pop grubu BLACKPINK'in üyesi. Chanel marka elçisi.","t":["K-Pop","BLACKPINK"]},{"n":"BTS (V - Kim Taehyung)","b":"30 Aralık 1995","z":"Oğlak","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$20M","bio":"K-Pop grubu BTS'in karizmatik üyesi. Dünya çapında milyonlarca hayran.","t":["K-Pop","BTS"]},{"n":"Conor McGregor","b":"14 Temmuz 1988","z":"Yengeç","c":"Dövüşçü, İş İnsanı","cat":"Spor","o":"INT","w":"$200M","bio":"UFC'nin en büyük yıldızı. Proper No. Twelve viski markası kurucusu.","t":["UFC","MMA"]},{"n":"Bad Bunny","b":"10 Mart 1994","z":"Balık","c":"Şarkıcı","cat":"Müzik","o":"INT","w":"$40M","bio":"Spotify'da dünyanın en çok dinlenen sanatçısı olan Porto Rikolu yıldız.","t":["Reggaeton","Latin"]},{"n":"Priyanka Chopra","b":"18 Temmuz 1982","z":"Yengeç","c":"Oyuncu, Yapımcı","cat":"Sinema","o":"INT","w":"$75M","bio":"Bollywood'dan Hollywood'a geçen Hintli yıldız. Miss World 2000.","t":["Bollywood","Global"]},{"n":"Greta Thunberg","b":"3 Ocak 2003","z":"Oğlak","c":"Çevre Aktivisti","cat":"Bilim","o":"INT","w":"—","bio":"'Fridays for Future' hareketini başlatan İsveçli iklim aktivisti.","t":["İklim","Aktivist"]},{"n":"Jennifer Lawrence","b":"15 Ağustos 1990","z":"Aslan","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$160M","bio":"22 yaşında Oscar kazanan yetenek. Hunger Games serisinin yıldızı.","t":["Oscar","Hunger Games"]},{"n":"Naomi Osaka","b":"16 Ekim 1997","z":"Terazi","c":"Tenisçi","cat":"Spor","o":"INT","w":"$60M","bio":"4 Grand Slam şampiyonluğu. Mental sağlık farkındalığı savunucusu.","t":["Tenis","Farkındalık"]},{"n":"Travis Scott","b":"30 Nisan 1991","z":"Boğa","c":"Rapçi, Yapımcı","cat":"Müzik","o":"INT","w":"$80M","bio":"Amerikalı rap yıldızı ve moda ikonu. Cactus Jack markasıyla tanınır.","t":["Rap","Moda"]},{"n":"Cate Blanchett","b":"14 Mayıs 1969","z":"Boğa","c":"Oyuncu","cat":"Sinema","o":"INT","w":"$95M","bio":"2 Oscar ödüllü Avustralyalı oyuncu. Sinema ve tiyatro efsanesi.","t":["Oscar","Tiyatro"]},{"n":"Tülin Şahin","b":"10 Mart 1981","z":"Balık","c":"Model, Sunucu","cat":"Moda","o":"TR","w":"$4M","bio":"Uluslararası arenada başarılı Türk süpermodel. Dünya markalarının yüzü.","t":["Model","Uluslararası"]},{"n":"Mahsun Kırmızıgül","b":"12 Haziran 1969","z":"İkizler","c":"Yönetmen, Şarkıcı","cat":"Sinema","o":"TR","w":"$20M","bio":"Şarkıcılıktan yönetmenliğe geçen çok yönlü sanatçı.","t":["Sinema","Yönetmen"]}]
+};
+
+const C=SS.celebs,Z=SS.zodiac,CI=SS.catIcons,CFG=SS.config,ST=SS.state;
+function ico(cat){return CI[cat]||'⭐'}
+function parseWealth(w){if(!w||w==="\u2014"||w==="—")return 0;var n=w.replace(/[^0-9.]/g,"");var v=parseFloat(n)||0;if(w.indexOf("B")>-1)v*=1000;return v;}
+function getYear(d){const p=d.split(' ');return parseInt(p[p.length-1])||0}
+
+// Stats
+const trC=C.filter(c=>c.o==='TR').length,intC=C.filter(c=>c.o==='INT').length;
+document.getElementById('statsBar').innerHTML=`<div class="st"><div class="sn">${C.length}</div><div class="sl">ÜNLÜ KİŞİ</div></div><div class="st"><div class="sn">12</div><div class="sl">BURÇ</div></div><div class="st"><div class="sn">${trC}</div><div class="sl">TÜRKİYE 🇹🇷</div></div><div class="st"><div class="sn">${intC}</div><div class="sl">DÜNYA 🌍</div></div>`;
+
+// Filters
+document.getElementById('catFilter').innerHTML='<button class="fb on" data-c="all">🌟 Tümü</button>'+Object.entries(CI).map(([k,v])=>`<button class="fb" data-c="${k}">${v} ${k}</button>`).join('');
+document.getElementById('zodFilter').innerHTML='<button class="zb on" data-z="all">🌟<span>Tümü</span></button>'+Object.entries(Z).map(([k,v])=>`<button class="zb" data-z="${k}">${v.i}<span>${k}</span></button>`).join('');
+document.getElementById('origFilter').innerHTML='<button class="fb on" data-o="all">🌍 Tümü</button><button class="fb" data-o="TR">🇹🇷 Türkiye</button><button class="fb" data-o="INT">🌎 Dünya</button>';
+
+// Filter engine
+function getFiltered(){
+let f=C.filter(c=>{
+if(ST.category!=='all'&&c.cat!==ST.category)return false;
+if(ST.zodiac!=='all'&&c.z!==ST.zodiac)return false;
+if(ST.origin!=='all'&&c.o!==ST.origin)return false;
+if(ST.search){const s=ST.search;const lc=v=>v.toLocaleLowerCase('tr');if(!lc(c.n).includes(s)&&!lc(c.c).includes(s)&&!lc(c.z).includes(s)&&!lc(c.cat).includes(s)&&!lc(c.bio).includes(s)&&!c.t.some(tg=>lc(tg).includes(s)))return false;}
+return true;
+});
+const zo=Object.keys(Z);
+switch(ST.sort){
+case'name-az':f.sort((a,b)=>a.n.localeCompare(b.n,'tr'));break;
+case'name-za':f.sort((a,b)=>b.n.localeCompare(a.n,'tr'));break;
+case'birth-new':f.sort((a,b)=>getYear(b.b)-getYear(a.b));break;
+case'birth-old':f.sort((a,b)=>getYear(a.b)-getYear(b.b));break;
+case'zodiac':f.sort((a,b)=>zo.indexOf(a.z)-zo.indexOf(b.z));break;
+case"wealth-high":f.sort(function(a,b){return parseWealth(b.w)-parseWealth(a.w)});break;
+case"wealth-low":f.sort(function(a,b){return parseWealth(a.w)-parseWealth(b.w)});break;
+}return f;}
+
+// Render
+function render(){
+ST.filtered=getFiltered();
+const total=ST.filtered.length,tp=Math.ceil(total/CFG.perPage);
+if(CFG.currentPage>tp)CFG.currentPage=tp||1;
+const start=(CFG.currentPage-1)*CFG.perPage,pd=ST.filtered.slice(start,start+CFG.perPage);
+document.getElementById('resCount').innerHTML=`<b>${total}</b> ünlü bulundu`;
+const g=document.getElementById('grid');
+g.innerHTML=pd.map((c,i)=>{const z=Z[c.z];return`<div class="card" data-idx="${C.indexOf(c)}" style="animation-delay:${i*CFG.animDelay}s"><div class="ch"><div class="av">${ico(c.cat)}<div class="flag">${c.o==='TR'?'🇹🇷':'🌍'}</div></div><div><div class="cn">${c.n}</div><div class="ct">${c.c}</div><div class="czb">${z.i} ${c.z}</div></div></div><div class="cb"><div class="ci"><span class="il">📅 Doğum</span><span class="iv">${c.b}</span></div><div class="ci"><span class="il">💰 Servet</span><span class="iv">${c.w}</span></div><div class="cbio">${c.bio}</div><div class="tags">${c.t.map(tag=>`<span class="tag">${tag}</span>`).join('')}</div></div></div>`}).join('');
+g.querySelectorAll('.card').forEach(card=>{card.onclick=()=>openModal(C[parseInt(card.dataset.idx)])});
+renderPager(tp);}
+
+function renderPager(tp){
+if(tp<=1){document.getElementById('pager').innerHTML='';return;}
+let h=`<button class="pg-btn" onclick="prevPage()" ${CFG.currentPage===1?'disabled':''}>‹</button>`;
+for(let i=1;i<=tp;i++){if(tp>7&&i>2&&i<tp-1&&Math.abs(i-CFG.currentPage)>1){if(i===3||i===tp-2)h+='<span class="pg-info">...</span>';continue;}
+h+=`<button class="pg-btn${i===CFG.currentPage?' on':''}" onclick="goPage(${i})">${i}</button>`;}
+h+=`<button class="pg-btn" onclick="nextPage()" ${CFG.currentPage===tp?'disabled':''}>›</button>`;
+document.getElementById('pager').innerHTML=h;}
+
+function openModal(c){const z=Z[c.z];document.getElementById('modalContent').innerHTML=`<button class="mc" id="closeModal">✕</button><div class="mav">${ico(c.cat)}</div><h2>${c.n}</h2><p class="mst">${c.c} • ${c.o==='TR'?'🇹🇷 Türkiye':'🌍 Uluslararası'}</p><div class="mz"><div class="mzi">${z.i} ${z.e}</div><div class="mzn">${c.z} Burcu</div><div class="mzd">${z.d} • ${z.el} Grubu • Gezegen: ${z.pl}</div><div class="mzc">"${z.y}"</div></div><div class="mdt"><div class="mdr"><span class="il">📅 Doğum Tarihi</span><span class="iv">${c.b}</span></div><div class="mdr"><span class="il">⭐ Burç</span><span class="iv">${z.i} ${c.z}</span></div><div class="mdr"><span class="il">🔥 Element</span><span class="iv">${z.el}</span></div><div class="mdr"><span class="il">🪐 Gezegen</span><span class="iv">${z.pl}</span></div><div class="mdr"><span class="il">💰 Tahmini Servet</span><span class="iv">${c.w}</span></div><div class="mdr"><span class="il">🏷 Kategori</span><span class="iv">${c.cat}</span></div></div><div class="mbio"><strong>📖 Hakkında:</strong> ${c.bio}</div>`;document.getElementById('modal').classList.add('on');document.getElementById('closeModal').onclick=closeModal;}
+function closeModal(){document.getElementById('modal').classList.remove('on')}
+
+// Pagination
+function goPage(p){CFG.currentPage=p;render();window.scrollTo({top:300,behavior:'smooth'})}
+function prevPage(){if(CFG.currentPage>1){CFG.currentPage--;render();window.scrollTo({top:300,behavior:'smooth'})}}
+function nextPage(){const tp=Math.ceil(ST.filtered.length/CFG.perPage);if(CFG.currentPage<tp){CFG.currentPage++;render();window.scrollTo({top:300,behavior:'smooth'})}}
+
+// Events
+document.getElementById('catFilter').onclick=e=>{const b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#catFilter .fb').forEach(x=>x.classList.remove('on'));b.classList.add('on');ST.category=b.dataset.c;CFG.currentPage=1;render()};
+document.getElementById('zodFilter').onclick=e=>{const b=e.target.closest('.zb');if(!b)return;document.querySelectorAll('#zodFilter .zb').forEach(x=>x.classList.remove('on'));b.classList.add('on');ST.zodiac=b.dataset.z;CFG.currentPage=1;render()};
+document.getElementById('origFilter').onclick=e=>{const b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('#origFilter .fb').forEach(x=>x.classList.remove('on'));b.classList.add('on');ST.origin=b.dataset.o;CFG.currentPage=1;render()};
+document.getElementById('searchInput').oninput=e=>{ST.search=e.target.value.toLocaleLowerCase('tr');CFG.currentPage=1;render()};
+document.getElementById('sortSel').onchange=e=>{ST.sort=e.target.value;CFG.currentPage=1;render()};
+document.getElementById('modal').onclick=e=>{if(e.target===document.getElementById('modal'))closeModal()};
+document.onkeydown=e=>{if(e.key==='Escape')closeModal()};
+window.onscroll=()=>{document.getElementById('scrollTopBtn').classList.toggle('show',window.scrollY>400)};
+document.getElementById('scrollTopBtn').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// Init
+render();
+</script>
+</body>
+</html>
