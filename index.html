@@ -15,9 +15,6 @@
 <link rel="canonical" href="https://serhatramay.github.io/starsign/">
 <title>StarSign — Ünlüler ve Burçları</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
 <style>
 :root{
 --p:#00CED1;--pl:#67E8F9;--pd:#0891B2;--s:#DAA520;--a:#C0C0C0;
@@ -29,7 +26,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden;line-height:1.5}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--tp);min-height:100vh;overflow-x:hidden;line-height:1.5}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 50%,rgba(0,206,209,.1),transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(218,165,32,.07),transparent 50%),radial-gradient(ellipse at 50% 85%,rgba(103,232,249,.05),transparent 50%);pointer-events:none;z-index:0}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .wrap{max-width:1440px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
@@ -41,7 +38,7 @@ h1{font-size:2.8rem;font-weight:900;background:var(--g1);-webkit-background-clip
 .st:hover{border-color:var(--pl);transform:translateY(-2px)}
 .sn{font-size:1.5rem;font-weight:800;background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sl{font-size:.68rem;color:var(--tm);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-.ctrl{margin:24px 0 16px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.ctrl{margin:24px 0 16px;display:flex;flex-direction:column;gap:14px;align-items:center;min-height:180px}
 .sbox{position:relative;width:100%;max-width:520px}
 .sbox input{width:100%;padding:14px 20px 14px 48px;border-radius:var(--r);border:2px solid var(--br);background:var(--card);color:var(--tp);font-family:inherit;font-size:.92rem;outline:none;transition:.3s}
 .sbox input:focus{border-color:var(--pl);box-shadow:0 0 0 4px rgba(0,206,209,.15)}
@@ -119,9 +116,9 @@ h1{font-size:2.8rem;font-weight:900;background:var(--g1);-webkit-background-clip
 .stt{position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;background:var(--g1);border:none;color:#fff;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:100;box-shadow:var(--sh);transition:.3s}
 .stt:hover{transform:scale(1.1)}.stt.show{display:flex}
 footer{text-align:center;padding:28px 0;border-top:1px solid var(--br);color:var(--tm);font-size:.75rem}
-footer a{color:var(--ts);text-decoration:none}footer a:hover{text-decoration:underline}
-@media(max-width:768px){h1{font-size:2rem}.grid{grid-template-columns:1fr;min-height:200px}.stats{gap:8px}.st{padding:8px 14px}.zb{width:40px;height:44px;font-size:1rem}.md{padding:22px;margin:8px}}
-@media(max-width:480px){h1{font-size:1.6rem}.fb{font-size:.7rem;padding:5px 11px}.zb{width:36px;height:40px;font-size:.9rem}.grid{grid-template-columns:1fr;gap:12px;min-height:150px}.card{padding:18px}}
+footer a{color:var(--ts);text-decoration:underline;text-underline-offset:2px}footer a:hover{color:var(--pl)}
+@media(max-width:768px){h1{font-size:2rem}.grid{grid-template-columns:1fr;min-height:200px}.stats{gap:8px}.st{padding:8px 14px}.zb{width:40px;height:44px;font-size:1rem}.md{padding:22px;margin:8px}.ctrl{min-height:160px}}
+@media(max-width:480px){h1{font-size:1.6rem}.fb{font-size:.7rem;padding:5px 11px}.zb{width:36px;height:40px;font-size:.9rem}.grid{grid-template-columns:1fr;gap:12px;min-height:150px}.card{padding:18px}.ctrl{min-height:140px}}
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:cardIn .4s ease both}
 ::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--p);border-radius:4px}
@@ -164,14 +161,12 @@ function parseWealth(w){if(!w||w==='—')return 0;var n=w.replace(/[^0-9.]/g,'')
 function getYear(d){var p=d.split(' ');return parseInt(p[p.length-1])||0}
 function zCls(name){return Z[name]?Z[name].cls:'air'}
 function zSvg(name){return ZS[name]||'⭐'}
-
 var trC=C.filter(function(c){return c.o==='TR'}).length;
 var intC=C.filter(function(c){return c.o==='INT'}).length;
 document.getElementById('statsBar').innerHTML='<div class="st"><div class="sn">'+C.length+'</div><div class="sl">ÜNLÜ KİŞİ</div></div><div class="st"><div class="sn">12</div><div class="sl">BURÇ</div></div><div class="st"><div class="sn">'+trC+'</div><div class="sl">TÜRKİYE 🇹🇷</div></div><div class="st"><div class="sn">'+intC+'</div><div class="sl">DÜNYA 🌍</div></div>';
 document.getElementById('catFilter').innerHTML='<button class="fb on" data-c="all" type="button">🌟 Tümü</button>'+Object.keys(CI).map(function(k){return '<button class="fb" data-c="'+k+'" type="button">'+CI[k]+' '+k+'</button>'}).join('');
 document.getElementById('zodFilter').innerHTML='<button class="zb on all-z" data-z="all" type="button">🌟<span>Tümü</span></button>'+Object.keys(Z).map(function(k){var v=Z[k];return '<button class="zb '+v.cls+'" data-z="'+k+'" type="button" style="color:var(--'+v.cls+')">'+zSvg(k)+'<span>'+k+'</span></button>'}).join('');
 document.getElementById('origFilter').innerHTML='<button class="fb on" data-o="all" type="button">🌍 Tümü</button><button class="fb" data-o="TR" type="button">🇹🇷 Türkiye</button><button class="fb" data-o="INT" type="button">🌎 Dünya</button>';
-
 function getFiltered(){
 var f=C.filter(function(c){
 if(ST.category!=='all'&&c.cat!==ST.category)return false;
@@ -190,7 +185,6 @@ case'zodiac':f.sort(function(a,b){return zo.indexOf(a.z)-zo.indexOf(b.z)});break
 case'wealth-high':f.sort(function(a,b){return parseWealth(b.w)-parseWealth(a.w)});break;
 case'wealth-low':f.sort(function(a,b){return parseWealth(a.w)-parseWealth(b.w)});break;
 }return f}
-
 function render(){
 ST.filtered=getFiltered();
 var total=ST.filtered.length,tp=Math.ceil(total/CFG.perPage);
@@ -201,7 +195,6 @@ var g=document.getElementById('grid');
 g.innerHTML=pd.map(function(c,i){var z=Z[c.z];var cl=z.cls;return '<article class="card" data-idx="'+C.indexOf(c)+'" style="animation-delay:'+i*CFG.animDelay+'s"><div class="ch"><div class="av">'+ico(c.cat)+'<div class="flag">'+(c.o==='TR'?'🇹🇷':'🌍')+'</div></div><div><div class="cn">'+c.n+'</div><div class="ct">'+c.c+'</div><div class="czb '+cl+'">'+zSvg(c.z)+' '+c.z+'</div></div></div><div class="cb"><div class="ci"><span class="il">📅 Doğum</span><span class="iv">'+c.b+'</span></div><div class="ci"><span class="il">💰 Servet</span><span class="iv">'+c.w+'</span></div><div class="cbio">'+c.bio+'</div><div class="tags">'+c.t.map(function(tag){return '<span class="tag">'+tag+'</span>'}).join('')+'</div></div></article>'}).join('');
 g.querySelectorAll('.card').forEach(function(card){card.onclick=function(){openModal(C[parseInt(card.dataset.idx)])}});
 renderPager(tp)}
-
 function renderPager(tp){
 if(tp<=1){document.getElementById('pager').innerHTML='';return}
 var h='<button class="pg-btn" onclick="prevPage()" type="button" '+(CFG.currentPage===1?'disabled':'')+' aria-label="Önceki sayfa">‹</button>';
@@ -209,7 +202,6 @@ for(var i=1;i<=tp;i++){if(tp>7&&i>2&&i<tp-1&&Math.abs(i-CFG.currentPage)>1){if(i
 h+='<button class="pg-btn'+(i===CFG.currentPage?' on':'')+'" onclick="goPage('+i+')" type="button" aria-label="Sayfa '+i+'">'+i+'</button>'}
 h+='<button class="pg-btn" onclick="nextPage()" type="button" '+(CFG.currentPage===tp?'disabled':'')+' aria-label="Sonraki sayfa">›</button>';
 document.getElementById('pager').innerHTML=h}
-
 function openModal(c){var z=Z[c.z];var cl=z.cls;document.getElementById('modalContent').innerHTML='<button class="mc" id="closeModal" type="button" aria-label="Kapat">✕</button><div class="mav">'+ico(c.cat)+'</div><h2>'+c.n+'</h2><p class="mst">'+c.c+' • '+(c.o==='TR'?'🇹🇷 Türkiye':'🌍 Uluslararası')+'</p><div class="mz '+cl+'"><div class="mzi">'+zSvg(c.z)+' '+z.e+'</div><div class="mzn '+cl+'">'+c.z+' Burcu</div><div class="mzd">'+z.d+' • '+z.el+' Grubu • Gezegen: '+z.pl+'</div><div class="mzc">"'+z.y+'"</div></div><div class="mdt"><div class="mdr"><span class="il">📅 Doğum Tarihi</span><span class="iv">'+c.b+'</span></div><div class="mdr"><span class="il">⭐ Burç</span><span class="iv">'+zSvg(c.z)+' '+c.z+'</span></div><div class="mdr"><span class="il">🔥 Element</span><span class="iv">'+z.el+'</span></div><div class="mdr"><span class="il">🪐 Gezegen</span><span class="iv">'+z.pl+'</span></div><div class="mdr"><span class="il">💰 Tahmini Servet</span><span class="iv">'+c.w+'</span></div><div class="mdr"><span class="il">🏷 Kategori</span><span class="iv">'+c.cat+'</span></div></div><div class="mbio"><strong>📖 Hakkında:</strong> '+c.bio+'</div>';document.getElementById('modal').classList.add('on');document.getElementById('closeModal').onclick=closeModal}
 function closeModal(){document.getElementById('modal').classList.remove('on')}
 function goPage(p){CFG.currentPage=p;render();window.scrollTo({top:300,behavior:'smooth'})}
